@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Juros Simples</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Calculadora de Juros Simples</h1>
+            <p>Calcule juros de forma rápida e fácil.</p>
+        </header>
+
+        <main>
+            <!-- Formulário de entrada -->
+            <section class="form-section">
+                <form id="formulario" onsubmit="calcularJuros(event)">
+                    <div class="input-group">
+                        <label for="valor">Valor:</label>
+                        <input type="number" id="valor" name="valor" step="0.01" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="dataInicial">Data Inicial:</label>
+                        <input type="date" id="dataInicial" name="dataInicial" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="dataCheque">Data do Cheque:</label>
+                        <input type="date" id="dataCheque" name="dataCheque" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="taxaJuros">Taxa de Juros (% ao dia):</label>
+                        <input type="number" id="taxaJuros" name="taxaJuros" step="0.01" required>
+                    </div>
+
+                    <!-- botão estilizado -->
+                    <div class="button-container">
+                        <div class="button-wrapper">
+                            <button class="fancy-button">
+                                <span class="gradient-background"></span>
+                                <span class="button-text">
+                                    <div class="button-content">
+                                        <span class="button-label">Calcular</span>
+                                        <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                                            <path clip-rule="evenodd" d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z" fill-rule="evenodd"></path>
+                                        </svg>
+                                    </div>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Resultados -->
+            <div id="resultado" class="hidden">
+                <h2>Resultado</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Descrição</th>
+                            <th>Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Valor Inicial</td>
+                            <td>R$ <span id="valorInicial">0.00</span></td>
+                        </tr>
+                        <tr>
+                            <td>Taxa de Juros (% ao dia)</td>
+                            <td><span id="taxaJurosResultado">0.00</span>%</td>
+                        </tr>
+                        <tr>
+                            <td>Data Inicial</td>
+                            <td><span id="dataInicialResultado">-</span></td>
+                        </tr>
+                        <tr>
+                            <td>Data do Cheque</td>
+                            <td><span id="dataChequeResultado">-</span></td>
+                        </tr>
+                        <tr>
+                            <td>Diferença de Dias</td>
+                            <td><span id="diasCorridos">0</span> dias</td>
+                        </tr>
+                        <tr>
+                            <td>Juro por Dia</td>
+                            <td>R$ <span id="juroPorDia">0.00</span></td>
+                        </tr>
+                        <tr>
+                            <td>Juros Finais</td>
+                            <td>R$ <span id="jurosFinais">0.00</span></td>
+                        </tr>
+                        <tr>
+                            <td>Valor Total</td>
+                            <td>R$ <span id="valorTotal">0.00</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+    <footer>
+        <p>&copy; 2025 <a href="https://github.com/esboinski" target="_blank">Matheus Esboinski</a>. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

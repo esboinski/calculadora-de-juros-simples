@@ -1,0 +1,273 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #1a1a1a; /* Fundo escuro */
+    color: #ffffff; /* Texto branco */
+    line-height: 1.6;
+    padding: 20px;
+    margin: 0; /* Remove margens padrão */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Garante que o conteúdo ocupe toda a altura da tela */
+}
+
+/* Estilo do container */
+.container {
+    background-color: #2d2d2d;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    color: #ffffff;
+    margin: 0 auto; /* Centraliza o container */
+    margin-bottom: 10px;
+    margin-top:70px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 24px;
+    color: #ffffff; /* Texto branco */
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 14px;
+    color: #b3b3b3; /* Texto cinza claro */
+}
+
+/* Formulário */
+.form-section {
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 14px;
+    color: #ffffff;
+    margin-bottom: 5px;
+}
+
+/* Estilo dos inputs */
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #3f3d3d; /* Borda mais escura */
+    border-radius: 5px;
+    font-size: 14px;
+    color: #ffffff; /* Texto branco */
+    background-color: #3d3d3d; /* Fundo escuro para os inputs */
+}
+
+.input-group input:focus {
+    outline: 2px solid #3498db; /* Cor da borda ao focar */
+    outline-offset: 2px; /* Espaçamento da borda */
+}
+
+/* Estilo do botão */
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #3498db; /* Azul vibrante para o botão */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #2980b9; /* Azul mais escuro no hover */
+    transform: scale(1.05); /* Efeito de escala ao passar o mouse */
+    transition: 0.3s ease;
+}
+
+/* Estilo da tabela */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    border-radius: 10px; /* Bordas arredondadas */
+    overflow: hidden; /* Garante que o conteúdo respeite o border-radius */
+}
+
+table th,
+table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #444; /* Borda mais escura */
+}
+
+table th {
+    background-color: #3498db; /* Azul vibrante para o cabeçalho da tabela */
+    color: #fff;
+}
+
+table tr:nth-child(even) {
+    background-color: #3d3d3d; /* Fundo escuro para linhas pares */
+}
+
+table tr:hover {
+    background-color: #444; /* Fundo mais claro no hover */
+}
+
+/* Oculta a seção de resultados inicialmente */
+.hidden {
+    display: none;
+}
+
+/* Estilo inicial da seção de resultados (oculta) */
+#resultado {
+    max-height: 0; /* Começa com altura zero */
+    overflow: hidden; /* Esconde o conteúdo que ultrapassa a altura */
+    opacity: 0;
+    transform: translateY(-20px); /* Começa um pouco acima */
+    transition: max-height 0.5s ease, opacity 0.5s ease, transform 0.5s ease;
+    border-radius: 10px; /* Bordas arredondadas */
+}
+
+/* Estilo da seção de resultados quando visível */
+#resultado.show {
+    max-height: 500px; /* Altura máxima para expandir (ajuste conforme necessário) */
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+footer {
+    text-align: center;
+    margin-top: auto; /* Isso vai empurrar o footer para o final da página */
+    padding: 10px;
+    font-size: 14px;
+    color: #b3b3b3;
+    border-top: 1px solid #444;
+    width: 100%;
+    bottom: 0; /* Coloca o footer no final da página */
+    left: 0; /* Alinha o footer à esquerda */
+}
+
+
+footer a {
+    color: #3498db; /* Cor azul para links (caso queira adicionar um link) */
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline; /* Efeito de sublinhado ao passar o mouse */
+}
+
+/* Estilos para telas pequenas, como celulares */
+@media only screen and (max-width: 480px) {
+    h1 {
+        font-size: 20px;
+    }
+
+    .button {
+        width: 100%;
+        font-size: 18px;
+    }
+}
+
+/* Fancy button styles */
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .button-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .fancy-button {
+    position: relative;
+    display: inline-block;
+    padding: 2px;
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+    background-color: #2d3748;
+    border-radius: 12px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+    overflow: hidden; /* Garantir que o gradiente não ultrapasse os limites do botão */
+  }
+  
+  /* Gradient effect when hovering */
+  .gradient-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 12px;
+    background: linear-gradient(to right, #4fd1c5, #3b82f6, #9333ea);
+    padding: 2px;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+  
+  .fancy-button:hover .gradient-background {
+    opacity: 1;
+  }
+  
+  /* Text inside the button */
+  .button-text {
+    position: relative;
+    z-index: 1; /* Certifica-se de que o texto esteja sobre o gradiente */
+    padding: 18px 36px;
+    background-color: #1f2937;
+    border-radius: 12px;
+    display: inline-block;
+  }
+  
+  /* Content inside the button */
+  .button-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  /* Label text */
+  .button-label {
+    transition: transform 0.5s ease;
+  }
+  
+  .fancy-button:hover .button-label {
+    transform: translateX(6px);
+  }
+  
+  /* Arrow icon */
+  .arrow-icon {
+    width: 14px;
+    height: 14px;
+    transition: transform 0.5s ease;
+  }
+  
+  .fancy-button:hover .arrow-icon {
+    transform: translateX(6px);
+  }
+  
+  /* Button active state */
+  .fancy-button:active {
+    transform: scale(0.95);
+  }
+  
