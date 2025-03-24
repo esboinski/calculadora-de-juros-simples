@@ -20,6 +20,8 @@ Calculadora para calcular juros simples com base em um valor inicial, taxa diár
 * Calcula juros simples baseados em valor inicial, taxa diária e período de tempo.
 * Suporta diferentes taxas de juros, personalizáveis pelo usuário.
 * Interface interativa e intuitiva.
+* Permite o usuário adicionar mais de um cheque, fazendo uma tabela infinita.
+* Permite o usuário resetar a tabela.
 * Cálculos automáticos de juros simples, tanto na versão web quanto através de script Python.
 * Totalmente funcional tanto na versão web quanto no script Python.
 * O script Python exibe os resultados em uma tabela simples utilizando a biblioteca `tabulate`, proporcionando uma visão clara e organizada dos cálculos.
@@ -30,10 +32,10 @@ Calculadora para calcular juros simples com base em um valor inicial, taxa diár
 
 <details><summary><b>Web</b></summary>
    
-![Interface inicial da versão web](./screenshot/screenshot_web1.png)
+![Interface inicial da versão web](./screenshot/screenshot_web1v2.png)
 *Interface inicial da versão web, onde o usuário insere os dados para cálculo.*
 
-![Resultados na versão web](./screenshot/screenshot_web2.png)
+![Resultados na versão web](./screenshot/screenshot_web2v2.png)
 *Tela de resultados da versão web, exibindo os cálculos em uma tabela estilizada.*
 </details>
 
