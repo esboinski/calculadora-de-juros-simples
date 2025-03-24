@@ -23,12 +23,13 @@ body {
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     width: 100%;
-    max-width: 600px;
+    max-width: 1200px;
     padding: 20px;
     color: #ffffff;
     margin: 0 auto; /* Centraliza o container */
     margin-bottom: 10px;
-    margin-top:70px;
+    margin-top: 70px;
+    height: auto;
 }
 
 header {
@@ -79,12 +80,10 @@ header p {
     outline-offset: 2px; /* Espaçamento da borda */
 }
 
-/* Estilo do botão */
+/* Estilos para os botões */
 button {
     width: 100%;
     padding: 10px;
-    background-color: #3498db; /* Azul vibrante para o botão */
-    color: #fff;
     border: none;
     border-radius: 5px;
     font-size: 16px;
@@ -92,11 +91,28 @@ button {
     transition: background-color 0.3s ease;
 }
 
-button:hover {
-    background-color: #2980b9; /* Azul mais escuro no hover */
-    transform: scale(1.05); /* Efeito de escala ao passar o mouse */
-    transition: 0.3s ease;
+/* Estilo do botão "Adicionar" */
+button.add {
+    background-color: #003366 !important; /* Verde para o botão de adicionar */
+    color: #fff;
+    margin-top:20px;
 }
+
+button.add:hover {
+    background-color: #27ae60 !important; /* Verde mais escuro no hover */
+}
+
+/* Estilo do botão "Resetar" */
+button.reset {
+    background-color: #003366 !important; /* Vermelho para o botão de resetar */
+    color: #ffffff;
+    margin-top:20px;
+}
+
+button.reset:hover {
+    background-color: #c0392b !important; /* Vermelho mais escuro no hover */
+}
+
 
 /* Estilo da tabela */
 table {
@@ -144,11 +160,10 @@ table tr:hover {
 
 /* Estilo da seção de resultados quando visível */
 #resultado.show {
-    max-height: 500px; /* Altura máxima para expandir (ajuste conforme necessário) */
+    max-height: 100%; /* Altura máxima para expandir (ajuste conforme necessário) */
     opacity: 1;
     transform: translateY(0);
 }
-
 
 footer {
     text-align: center;
@@ -161,7 +176,6 @@ footer {
     bottom: 0; /* Coloca o footer no final da página */
     left: 0; /* Alinha o footer à esquerda */
 }
-
 
 footer a {
     color: #3498db; /* Cor azul para links (caso queira adicionar um link) */
@@ -184,90 +198,32 @@ footer a:hover {
     }
 }
 
-/* Fancy button styles */
-.button-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-  }
-  
-  .button-wrapper {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .fancy-button {
-    position: relative;
-    display: inline-block;
-    padding: 2px;
-    font-size: 14px;
-    font-weight: 600;
-    color: white;
-    background-color: #2d3748;
-    border-radius: 12px;
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
-    cursor: pointer;
-    transition: transform 0.3s ease-in-out;
-    overflow: hidden; /* Garantir que o gradiente não ultrapasse os limites do botão */
-  }
-  
-  /* Gradient effect when hovering */
-  .gradient-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border-radius: 12px;
-    background: linear-gradient(to right, #4fd1c5, #3b82f6, #9333ea);
-    padding: 2px;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-  }
-  
-  .fancy-button:hover .gradient-background {
-    opacity: 1;
-  }
-  
-  /* Text inside the button */
-  .button-text {
-    position: relative;
-    z-index: 1; /* Certifica-se de que o texto esteja sobre o gradiente */
-    padding: 18px 36px;
-    background-color: #1f2937;
-    border-radius: 12px;
-    display: inline-block;
-  }
-  
-  /* Content inside the button */
-  .button-content {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  
-  /* Label text */
-  .button-label {
-    transition: transform 0.5s ease;
-  }
-  
-  .fancy-button:hover .button-label {
-    transform: translateX(6px);
-  }
-  
-  /* Arrow icon */
-  .arrow-icon {
-    width: 14px;
-    height: 14px;
-    transition: transform 0.5s ease;
-  }
-  
-  .fancy-button:hover .arrow-icon {
-    transform: translateX(6px);
-  }
-  
-  /* Button active state */
-  .fancy-button:active {
-    transform: scale(0.95);
-  }
-  
+@keyframes slideIn {
+    from {
+        transform: translateY(10px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Adicionando a animação aos cheques */
+.cheque {
+    animation: slideIn 0.5s ease-out; /* Animação de 0.5 segundos */
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+/* Adicionando a animação de fade-out */
+.fade-out {
+    animation: fadeOut 0.5s ease-out forwards; /* Animação de 0.5 segundos */
+}

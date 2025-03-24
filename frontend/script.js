@@ -1,7 +1,7 @@
-function calcularJuros(event) {
-    event.preventDefault();
+function adicionarCheque(event) {
+    event.preventDefault(); // Impede o envio do formulário
 
-    // Coletar valores do formulário
+    // Coletar os valores dos campos
     let valor = parseFloat(document.getElementById('valor').value.replace(",", "."));
     let dataInicialStr = document.getElementById('dataInicial').value;
     let dataChequeStr = document.getElementById('dataCheque').value;
@@ -13,53 +13,74 @@ function calcularJuros(event) {
         return;
     }
 
-    // Converter as strings de data para o formato correto (YYYY/MM/DD)
-    let dataInicial = new Date(dataInicialStr + 'T00:00:00');
-    let dataCheque = new Date(dataChequeStr + 'T00:00:00');
+    // Converter as datas para o formato correto (YYYY-MM-DD)
+    let dataInicial = new Date(dataInicialStr);
+    let dataCheque = new Date(dataChequeStr);
 
-    // Verificar se as datas foram inseridas corretamente
-    if (isNaN(dataInicial.getTime()) || isNaN(dataCheque.getTime())) {
-        alert('Por favor, insira as datas corretamente!');
-        return;
-    }
+    // Calcular o número de dias entre as datas
+    let diferencaDias = Math.ceil((dataCheque - dataInicial) / (1000 * 3600 * 24));
 
-    // Ajustar as datas para garantir que são apenas datas (sem horas, minutos ou segundos)
-    dataInicial.setHours(0, 0, 0, 0);
-    dataCheque.setHours(0, 0, 0, 0);
+    // Calcular os juros
+    let juros = (valor * taxaJuros / 100) * diferencaDias;
 
-    // Garantir que a data inicial seja antes da data do cheque
-    let diffTime = dataCheque - dataInicial;
-    if (diffTime <= 0) {
-        alert('A data inicial não pode ser posterior ou igual à data do cheque!');
-        return;
-    }
+    // Calcular o total (valor + juros)
+    let total = valor + juros;
 
-    // Calcular o número de dias entre as duas datas
-    let diasCorridos = Math.floor(diffTime / (1000 * 3600 * 24));
+    // Preencher a tabela com os dados
+    const tabelaCheques = document.getElementById('tabelaCheques');
+    const novaLinha = document.createElement('tr');
+    
+    // Adiciona a classe de animação ao novo cheque
+    novaLinha.classList.add('cheque');
+    
+    novaLinha.innerHTML = `
+        <td>R$ ${valor.toFixed(2)}</td>
+        <td>${dataInicial.toLocaleDateString()}</td>
+        <td>${dataCheque.toLocaleDateString()}</td>
+        <td>${taxaJuros.toFixed(2)}%</td>
+        <td>${diferencaDias} dias</td>
+        <td>R$ ${juros.toFixed(2)}</td>
+        <td>R$ ${total.toFixed(2)}</td>
+    `;
 
-    // Calcular o juro por dia
-    let juroPorDia = (valor / 30) * (taxaJuros / 100);
+    tabelaCheques.appendChild(novaLinha);
 
-    // Calcular os juros finais
-    let jurosFinais = juroPorDia * diasCorridos;
-
-    // Calcular o valor total
-    let total = valor + jurosFinais;
-
-    // Exibir o resultado na tabela
-    document.getElementById('valorInicial').textContent = valor.toFixed(2);
-    document.getElementById('taxaJurosResultado').textContent = taxaJuros.toFixed(2);
-    document.getElementById('dataInicialResultado').textContent = dataInicial.toLocaleDateString('pt-BR');
-    document.getElementById('dataChequeResultado').textContent = dataCheque.toLocaleDateString('pt-BR');
-    document.getElementById('diasCorridos').textContent = diasCorridos;
-    document.getElementById('juroPorDia').textContent = juroPorDia.toFixed(2); // Novo campo para juro por dia
-    document.getElementById('jurosFinais').textContent = jurosFinais.toFixed(2); // Novo campo para juros finais
-    document.getElementById('valorTotal').textContent = total.toFixed(2);
-
-    // Mostrar a seção de resultados com animação de expansão
-    let resultadoDiv = document.getElementById('resultado');
-    resultadoDiv.classList.remove('hidden'); // Remove a classe hidden
+    // Reaplica a animação (força o reflow para reiniciar a animação)
     setTimeout(() => {
-        resultadoDiv.classList.add('show'); // Adiciona a classe show para a animação
+        novaLinha.classList.remove('cheque');
+        void novaLinha.offsetWidth;  // Força o reflow
+        novaLinha.classList.add('cheque');
     }, 10);
+
+    // Exibir a tabela de resultados
+    let resultadoDiv = document.getElementById('resultado');
+    resultadoDiv.classList.remove('hidden'); // Mostra a seção de resultados
+    setTimeout(() => {
+        resultadoDiv.classList.add('show'); // Anima a exibição dos resultados
+    }, 10);
+}
+
+// Função para resetar tudo
+function resetarTudo() {
+    // Adiciona uma animação de fade-out à tabela
+    const tabelaCheques = document.getElementById('tabelaCheques');
+    
+    // Adiciona a classe de animação para fazer o fade-out
+    tabelaCheques.classList.add('fade-out');
+    
+    // Espera o tempo da animação para limpar a tabela
+    setTimeout(() => {
+        // Limpar o formulário
+        document.getElementById('formulario').reset();
+
+        // Limpar a tabela de resultados
+        tabelaCheques.innerHTML = '';
+
+        // Remover a classe de animação após limpar
+        tabelaCheques.classList.remove('fade-out');
+
+        // Esconder a tabela de resultados
+        const resultado = document.getElementById('resultado');
+        resultado.classList.add('hidden');
+    }, 500); // Tempo de animação de fade-out (em milissegundos)
 }
