@@ -1,35 +1,115 @@
-# Calculadora de Juros Simples 💰
+# Calculadora de Juros Simples
+Calculadora para calcular juros simples com base em um valor inicial, taxa diária de juros e o período entre duas datas. Suporta tanto uma interface web quanto um script Python para cálculos automáticos.
 
-Esta é uma calculadora de juros simples, desenvolvida para calcular o valor dos juros sobre um valor inicial, levando em consideração a taxa de juros e o período de tempo entre duas datas. O projeto foi feito em HTML, CSS e JavaScript para o frontend e Python para o cálculo dos juros no backend. ⚙️
+![Python](https://img.shields.io/badge/python-3.x-blue)
 
-![HTML5](https://img.shields.io/badge/HTML5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-%23F7DF1E.svg?style=for-the-badge&logo=javascript&logoColor=black)
-![Python](https://img.shields.io/badge/Python-%233B8DBD.svg?style=for-the-badge&logo=python&logoColor=white)
+## Catálogo
 
-## Funcionalidades ✨
+- [Funcionalidades](#funcionalidades)
+- [Galeria](#galeria)
+- [Compatibilidade](#compatibilidade)
+- [Como usar](#como-usar)
+  - [Versão Web (frontend)](#versão-web-frontend)
+  - [Versão CMD (backend)](#versão-cmd-backend)
+     - [Exemplo de execução do script Python](#4-exemplo-de-execucao-do-script-python)
+- [Desinstalação](#desinstalação)
+- [Dependências](#dependências)
 
-- Cálculo de juros simples baseado no valor inicial, taxa de juros diária e o período de tempo entre duas datas.
-- Interface simples e interativa para facilitar o uso.
-- Pode ser usado tanto como uma calculadora na web quanto como um script Python para cálculos automáticos.
 
-## Tecnologias Utilizadas 🛠️
+## Funcionalidades
+* Calcula juros simples baseados em valor inicial, taxa diária e período de tempo.
+* Suporta diferentes taxas de juros, personalizáveis pelo usuário.
+* Interface interativa e intuitiva.
+* Cálculos automáticos de juros simples, tanto na versão web quanto através de script Python.
+* Totalmente funcional tanto na versão web quanto no script Python.
+* O script Python exibe os resultados em uma tabela simples utilizando a biblioteca `tabulate`, proporcionando uma visão clara e organizada dos cálculos.
+* A versão web exibe os resultados em uma tabela estilizada, proporcionando uma interface mais interativa e visualmente agradável para o usuário.
+* O script Python permite adicionar múltiplos cheques de uma vez, facilitando o cálculo de juros para diferentes períodos ou valores.
 
-- **Frontend:** <br> ![HTML5](https://img.shields.io/badge/HTML5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)![CSS3](https://img.shields.io/badge/CSS3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)![JavaScript](https://img.shields.io/badge/JavaScript-%23F7DF1E.svg?style=for-the-badge&logo=javascript&logoColor=black)
-- **Backend (Opcional):** <br> ![Python](https://img.shields.io/badge/Python-%233B8DBD.svg?style=for-the-badge&logo=python&logoColor=white)
+## Galeria
 
-## Como Usar 🖥️
+<details><summary><b>Web</b></summary>
+   
+![Interface inicial da versão web](./screenshot/screenshot_web1.png)
+*Interface inicial da versão web, onde o usuário insere os dados para cálculo.*
 
-### Interface Web 🌐
+![Resultados na versão web](./screenshot/screenshot_web2.png)
+*Tela de resultados da versão web, exibindo os cálculos em uma tabela estilizada.*
+</details>
 
-1. Clone o repositório ou acesse o [link da Vercel](https://calculadora-de-juros-simples.vercel.app/) para usar a versão online.
-2. Preencha os campos:
-   - **Valor:** O valor inicial sobre o qual os juros serão calculados.
-   - **Data Inicial:** A data em que o valor foi investido.
-   - **Data do Cheque:** A data de vencimento ou do cheque.
-   - **Taxa de Juros (% ao dia):** A taxa diária de juros aplicada.
-3. Clique em "Calcular" para ver o resultado. ✅
+<details><summary><b>CMD</b></summary>
+   
+![Resultados no terminal](./screenshot/screenshot_script.png)
+*Resultados exibidos no terminal, utilizando a biblioteca `tabulate` para formatação.*
+</details>
 
-### Script Python 🐍
 
-Para calcular os juros usando Python, você pode utilizar o script `calculo.py` disponível no repositório.
+## Compatibilidade  
+### Web  
+- Compatível com os principais navegadores modernos: **Google Chrome, Mozilla Firefox, Microsoft Edge e Safari**.  
+- Funciona em **Windows, macOS e Linux**, desde que haja um navegador compatível.  
+- Não requer instalações adicionais, basta acessar a versão online.  
+
+### CMD (Python) 
+- Compatível com **Python 3.x**.  
+- Testado em **Windows, macOS e distribuições Linux**.  
+- Requer a biblioteca `tabulate` para exibição dos resultados em formato de tabela.
+- Pode ser executado em **ambientes locais ou servidores** para cálculos automatizados.
+
+## Como usar
+
+### Instalação e Execução
+
+#### Versão Web (frontend)
+
+1. Acesse a versão online do sistema de cálculo de juros no navegador através do [link do sistema](https://calculadora-de-juros-simples.vercel.app/).
+2. Insira os valores necessários nos campos indicados.
+3. Clique em "Calcular" para visualizar os resultados em uma tabela estilizada.
+---
+#### Versão CMD (backend)
+1. Certifique-se de ter o **Python 3.x** instalado no seu sistema.  
+2. Baixe o script Python a partir da [página do repositório](https://github.com/esboinski/calculadora-de-juros-simples/tree/main/backend).  
+3. Se desejar usar a exibição formatada com `tabulate`, instale a biblioteca executando:  
+```bash
+pip install tabulate
+````
+<a id="4-exemplo-de-execucao-do-script-python"></a>4. Exemplo de execução do script Python
+
+```python
+Quantos cheques deseja adicionar? 
+2 
+Digite a taxa de juros (em %): 
+2.5 
+Digite a data inicial (DD/MM/AAAA): 
+11/03/2025 
+Digite a data do cheque (DD/MM/AAAA): 
+25/03/2025 
+Digite o valor do cheque: 
+8000 
+Digite a data inicial (DD/MM/AAAA): 
+11/03/2025 
+Digite a data do cheque (DD/MM/AAAA): 
+02/04/2025 
+Digite o valor do cheque: 
+1192.40
+
+Resultado:
++----------------+------------------+----------------+--------+-----------------+----------------+
+| DATA INICIAL   | DATA DO CHEQUE   | VALOR CHEQUE   | DIAS   | JURO/DIA 2.5%   | JUROS FINAIS   |
++================+==================+================+========+=================+================+
+| 11/03/2025     | 25/03/2025       | R$ 8,000.00    | 14     | R$ 6.67         | R$ 93.33       |
++----------------+------------------+----------------+--------+-----------------+----------------+
+| 11/03/2025     | 02/04/2025       | R$ 1,192.40    | 22     | R$ 0.99         | R$ 21.86       |
++----------------+------------------+----------------+--------+-----------------+----------------+
+| TOTAL          |                  | R$ 9,192.40    |        |                 | R$ 115.19      |
++----------------+------------------+----------------+--------+-----------------+----------------+
+````
+### Desinstalação
+- Para a versão web, basta sair da página.  
+- Para o script Python, basta excluir o arquivo baixado.
+
+## Dependências
+
+* [Tabulate](https://pypi.org/project/tabulate/) - Biblioteca Python para exibição de tabelas no terminal.
+* [Python 3.x](https://www.python.org/downloads/) - Requer Python 3.x instalado em seu sistema para execução.
+* `datetime` - Biblioteca nativa do Python para manipulação de datas e horários. **Não é necessário instalar**, pois já vem com o Python.
