@@ -13,17 +13,18 @@ function adicionarCheque(event) {
         return;
     }
 
-    // Converter as datas para o formato correto (YYYY-MM-DD)
     let dataInicial = new Date(dataInicialStr);
     let dataCheque = new Date(dataChequeStr);
 
-   // Zera as horas das datas para garantir um cálculo preciso
-   dataInicial.setHours(0, 0, 0, 0);
-   dataCheque.setHours(0, 0, 0, 0);
+    // Zera as horas das datas para garantir que a   diferença não seja afetada por horários
+    dataInicial.setHours(0, 0, 0, 0);
+    dataCheque.setHours(0, 0, 0, 0);
 
+    // Calcular a diferença em milissegundos
+    let diferencaMillis = dataCheque - dataInicial;
 
-    // Calcular o número de dias entre as datas
-    let diferencaDias = Math.round((dataCheque - dataInicial) / (1000 * 3600 * 24));
+// Calcular o número de dias corretamente
+let diferencaDias = diferencaMillis / (1000 * 3600 * 24);
 
     // Calcular os juros
     let juros = valor * (taxaJuros / 100) * (diferencaDias / 30);
