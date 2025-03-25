@@ -23,7 +23,7 @@ function adicionarCheque(event) {
 
 
     // Calcular o número de dias entre as datas
-    let diferencaDias = Math.ceil((dataCheque - dataInicial) / (1000 * 3600 * 24));
+    let diferencaDias = Math.round((dataCheque - dataInicial) / (1000 * 3600 * 24));
 
     // Calcular os juros
     let juros = valor * (taxaJuros / 100) * (diferencaDias / 30);
