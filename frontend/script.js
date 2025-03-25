@@ -1,3 +1,62 @@
+function animateCount(element, start, end, duration) {
+    let range = end - start;
+    let current = start;
+    let increment = range / (duration / 10);
+    let stepTime = 10;
+    
+    function update() {
+        current += increment;
+        if ((increment > 0 && current >= end) || (increment < 0 && current <= end)) {
+            current = end;
+        } else {
+            setTimeout(update, stepTime);
+        }
+        element.textContent = `R$ ${current.toFixed(2)}`;
+    }
+    update();
+}
+
+function atualizarTotais() {
+    let totalCheques = 0;
+    let totalJuros = 0;
+
+    // Seleciona todas as linhas da tabela (exceto o cabeçalho)
+    const linhas = document.querySelectorAll("#tabelaCheques tr");
+
+    // Começar a contagem das linhas corretamente
+    linhas.forEach((linha) => {
+        const colunas = linha.getElementsByTagName("td");
+
+        // Verifica se a linha tem colunas suficientes para evitar erros
+        if (colunas.length > 0) {
+            const valorCheque = parseFloat(colunas[0].textContent.replace("R$ ", "").replace(",", "."));
+            const valorTotal = parseFloat(colunas[6].textContent.replace("R$ ", "").replace(",", "."));
+
+            // Somar os valores normalmente
+            totalCheques += isNaN(valorCheque) ? 0 : valorCheque;
+            totalJuros += isNaN(valorTotal) ? 0 : valorTotal;
+        }
+    });
+
+    let totalChequesEl = document.getElementById("totalCheques");
+    let totalJurosEl = document.getElementById("totalJuros");
+
+    // Adiciona a classe de atualização para efeito visual
+    totalChequesEl.classList.add("updated");
+    totalJurosEl.classList.add("updated");
+
+    // Anima a contagem dos valores
+    animateCount(totalChequesEl, parseFloat(totalChequesEl.textContent.replace("R$ ", "")) || 0, totalCheques, 500);
+    animateCount(totalJurosEl, parseFloat(totalJurosEl.textContent.replace("R$ ", "")) || 0, totalJuros, 500);
+
+    // Remove a classe após a animação (tempo suficiente para o efeito visual)
+    setTimeout(() => {
+        totalChequesEl.classList.remove("updated");
+        totalJurosEl.classList.remove("updated");
+    }, 600); // O tempo é o mesmo da animação CSS
+}
+
+// Função para adicionar um cheque à tabela
 function adicionarCheque(event) {
     event.preventDefault(); // Impede o envio do formulário
 
@@ -13,24 +72,12 @@ function adicionarCheque(event) {
         return;
     }
 
-function formatarData(dataStr) {
-    // Converte a data do formato DD/MM/YYYY para o formato YYYY-MM-DD
-    const [dia, mes, ano] = dataStr.split('/');
-    return `${ano}-${mes}-${dia}`;
-}
+    // Converter as datas para o formato correto (YYYY-MM-DD)
+    let dataInicial = new Date(dataInicialStr);
+    let dataCheque = new Date(dataChequeStr);
 
-    let dataInicial = new Date(formatarData(dataInicialStr));
-    let dataCheque = new Date(formatarData(dataChequeStr));
-
-    // Zera as horas das datas para garantir que a   diferença não seja afetada por horários
-    dataInicial.setHours(0, 0, 0, 0);
-    dataCheque.setHours(0, 0, 0, 0);
-
-    // Calcular a diferença em milissegundos
-    let diferencaMillis = dataCheque - dataInicial;
-
-// Calcular o número de dias corretamente
-let diferencaDias = diferencaMillis / (1000 * 3600 * 24);
+    // Calcular o número de dias entre as datas
+    let diferencaDias = Math.ceil((dataCheque - dataInicial) / (1000 * 3600 * 24));
 
     // Calcular os juros
     let juros = valor * (taxaJuros / 100) * (diferencaDias / 30);
@@ -70,6 +117,9 @@ let diferencaDias = diferencaMillis / (1000 * 3600 * 24);
     setTimeout(() => {
         resultadoDiv.classList.add('show'); // Anima a exibição dos resultados
     }, 10);
+
+    // Atualizar totais sempre que um novo cheque for adicionado
+    atualizarTotais();
 }
 
 // Função para resetar tudo
@@ -94,5 +144,9 @@ function resetarTudo() {
         // Esconder a tabela de resultados
         const resultado = document.getElementById('resultado');
         resultado.classList.add('hidden');
+
+        // Resetar os totais
+        document.getElementById("totalCheques").textContent = "R$ 0.00";
+        document.getElementById("totalJuros").textContent = "R$ 0.00";
     }, 500); // Tempo de animação de fade-out (em milissegundos)
 }

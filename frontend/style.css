@@ -135,7 +135,7 @@ table th {
     color: #fff;
 }
 
-table tr:nth-child(even) {
+table tbody tr:nth-child(even) {
     background-color: #3d3d3d; /* Fundo escuro para linhas pares */
 }
 
@@ -186,26 +186,58 @@ footer a:hover {
     text-decoration: underline; /* Efeito de sublinhado ao passar o mouse */
 }
 
-/* Estilos para telas pequenas, como celulares */
-@media only screen and (max-width: 480px) {
-    h1 {
-        font-size: 20px;
+@media only screen and (max-width: 768px) {
+    .container {
+        padding: 15px;
+        margin-top: 30px;
     }
 
-    .button {
-        width: 100%;
-        font-size: 18px;
+    header h1 {
+        font-size: 22px;
+    }
+
+    .input-group input {
+        padding: 12px;
+        font-size: 16px;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 12px;
+    }
+
+    table th, table td {
+        padding: 8px;
     }
 }
 
-@keyframes slideIn {
-    from {
-        transform: translateY(10px);
-        opacity: 0;
+@media only screen and (max-width: 480px) {
+    body {
+        padding: 10px; /* Menos espaço nas laterais */
     }
-    to {
-        transform: translateY(0);
-        opacity: 1;
+
+    header h1 {
+        font-size: 18px; /* Ajuste do tamanho do título */
+    }
+
+    .input-group input,
+    button {
+        font-size: 14px;
+    }
+
+    table th,
+    table td {
+        font-size: 12px; /* Ajuste da fonte na tabela */
+        padding: 8px; /* Menos espaçamento nas células */
+    }
+
+    table {
+        width: 100%;
+        margin-top: 0; /* Remove a margem superior */
+    }
+
+    footer {
+        font-size: 10px; /* Reduzir o tamanho da fonte no rodapé */
     }
 }
 
@@ -226,4 +258,9 @@ footer a:hover {
 /* Adicionando a animação de fade-out */
 .fade-out {
     animation: fadeOut 0.5s ease-out forwards; /* Animação de 0.5 segundos */
+}
+
+tfoot{
+    background-color: #003366;
+    border-top: 1px solid #444;
 }
