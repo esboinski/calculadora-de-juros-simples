@@ -17,6 +17,11 @@ function adicionarCheque(event) {
     let dataInicial = new Date(dataInicialStr);
     let dataCheque = new Date(dataChequeStr);
 
+   // Zera as horas das datas para garantir um cálculo preciso
+   dataInicial.setHours(0, 0, 0, 0);
+   dataCheque.setHours(0, 0, 0, 0);
+
+
     // Calcular o número de dias entre as datas
     let diferencaDias = Math.ceil((dataCheque - dataInicial) / (1000 * 3600 * 24));
 
