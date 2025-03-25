@@ -13,8 +13,14 @@ function adicionarCheque(event) {
         return;
     }
 
-    let dataInicial = new Date(dataInicialStr);
-    let dataCheque = new Date(dataChequeStr);
+function formatarData(dataStr) {
+    // Converte a data do formato DD/MM/YYYY para o formato YYYY-MM-DD
+    const [dia, mes, ano] = dataStr.split('/');
+    return `${ano}-${mes}-${dia}`;
+}
+
+    let dataInicial = new Date(formatarData(dataInicialStr));
+    let dataCheque = new Date(formatarData(dataChequeStr));
 
     // Zera as horas das datas para garantir que a   diferença não seja afetada por horários
     dataInicial.setHours(0, 0, 0, 0);
