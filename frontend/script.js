@@ -21,7 +21,7 @@ function adicionarCheque(event) {
     let diferencaDias = Math.ceil((dataCheque - dataInicial) / (1000 * 3600 * 24));
 
     // Calcular os juros
-    let juros = valor * (taxaJuros / 100) * diferencaDias;
+    let juros = valor * (taxaJuros / 100) * (diferencaDias / 30);
 
     // Calcular o total (valor + juros)
     let total = valor + juros;
