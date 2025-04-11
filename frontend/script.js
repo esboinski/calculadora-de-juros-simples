@@ -56,6 +56,12 @@ function atualizarTotais() {
     }, 600); // O tempo é o mesmo da animação CSS
 }
 
+// Função que impede o bug das datas
+function criarDataLocal(str) {
+    const [ano, mes, dia] = str.split('-').map(Number);
+    return new Date(ano, mes - 1, dia); // mês começa do 0!
+}
+
 // Função para adicionar um cheque à tabela
 function adicionarCheque(event) {
     event.preventDefault(); // Impede o envio do formulário
@@ -72,9 +78,13 @@ function adicionarCheque(event) {
         return;
     }
 
-    // Converter as datas para o formato correto (YYYY-MM-DD)
-    let dataInicial = new Date(dataInicialStr);
-    let dataCheque = new Date(dataChequeStr);
+    // Datas usando a função
+    let dataInicial = criarDataLocal(dataInicialStr);
+    let dataCheque = criarDataLocal(dataChequeStr);
+
+    // Zera as horas das datas para evitar diferença de horários
+    dataInicial.setHours(0, 0, 0, 0);
+    dataCheque.setHours(0, 0, 0, 0);
 
     // Calcular o número de dias entre as datas
     let diferencaDias = Math.ceil((dataCheque - dataInicial) / (1000 * 3600 * 24));
